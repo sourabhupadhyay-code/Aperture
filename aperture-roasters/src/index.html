@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aperture Coffee Roasters — Small-batch, slow-roasted</title>
+<meta name="description" content="Aperture Coffee Roasters — a small-batch roastery. See our roast curve, browse the current lineup, and find our door." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">◐</span>
+      Aperture
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="primary-nav" id="primaryNav">
+      <a href="#story">Story</a>
+      <a href="#roast">The Roast</a>
+      <a href="#menu">Lineup</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Small-batch · 12kg drum · roasted Tuesdays &amp; Fridays</p>
+        <h1>We roast until the bean tells us to stop.</h1>
+        <p class="lede">No flavor charts, no shortcuts. Every batch is tasted, timed, and logged by hand before it ever reaches a bag.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#menu">See this week's lineup</a>
+          <a class="btn btn-ghost" href="#visit">Find the door</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-hidden="true">
+        <div class="steam-cup">
+          <div class="steam s1"></div>
+          <div class="steam s2"></div>
+          <div class="steam s3"></div>
+          <div class="cup"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="story">
+    <div class="wrap story-grid">
+      <div class="story-text">
+        <h2>Started on a two-burner stovetop.</h2>
+        <p>Aperture began in 2019 in a one-car garage with a secondhand popcorn roaster and a kitchen thermometer. We kept the habit that started it all: writing down what we did, tasting what came out, and changing one variable at a time.</p>
+        <p>Today the roaster is bigger, but the method hasn't changed. We buy direct from three growing regions, roast in batches small enough to correct mid-course, and cup every batch before it's approved to sell.</p>
+      </div>
+      <dl class="story-stats">
+        <div><dt>6</dt><dd>years roasting</dd></div>
+        <div><dt>3</dt><dd>origin partners</dd></div>
+        <div><dt>12kg</dt><dd>max batch size</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="roast" class="roast">
+    <div class="wrap">
+      <h2>The roast curve, explained</h2>
+      <p class="section-lede">Roasting is a straight line from green to first crack to your cup. Drag the marker — or read left to right — to see what's happening to the bean at each stage.</p>
+
+      <div class="curve-widget">
+        <svg viewBox="0 0 900 340" class="curve-svg" id="curveSvg" role="img" aria-label="Roast temperature curve from charge to drop">
+          <line x1="60" y1="290" x2="860" y2="290" class="axis"></line>
+          <line x1="60" y1="20" x2="60" y2="290" class="axis"></line>
+          <path id="curvePath" class="curve-path" d="M60,270 C220,250 300,190 420,140 C520,100 600,80 700,60 C760,50 820,45 860,42" fill="none"></path>
+          <g class="curve-markers">
+            <circle cx="60" cy="270" r="6" data-stage="0"></circle>
+            <circle cx="330" cy="205" r="6" data-stage="1"></circle>
+            <circle cx="560" cy="95" r="6" data-stage="2"></circle>
+            <circle cx="700" cy="60" r="6" data-stage="3"></circle>
+            <circle cx="860" cy="42" r="6" data-stage="4"></circle>
+          </g>
+          <circle id="curveDot" class="curve-dot" cx="60" cy="270" r="8"></circle>
+        </svg>
+
+        <div class="curve-readout">
+          <span class="curve-time" id="curveTime">0:00</span>
+          <span class="curve-temp" id="curveTemp">Charge · 200°C</span>
+        </div>
+
+        <input type="range" min="0" max="4" step="1" value="0" id="curveSlider" class="curve-slider" aria-label="Roast stage">
+
+        <p class="curve-caption" id="curveCaption">Green beans hit the drum. Temperature drops fast as the cold beans absorb heat.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="menu">
+    <div class="wrap">
+      <h2>This week's lineup</h2>
+      <p class="section-lede">Roasted Tuesday, bagged Wednesday, gone by Sunday. When it sells out, it's off the shelf until the next region comes in.</p>
+
+      <div class="menu-grid" id="menuGrid">
+        <!-- cards injected by script.js, static fallback below -->
+        <article class="menu-card">
+          <p class="menu-origin">Yirgacheffe, Ethiopia</p>
+          <h3>Washed, light roast</h3>
+          <p class="menu-notes">Bergamot, stone fruit, black tea finish</p>
+          <p class="menu-price">$21 / 340g</p>
+        </article>
+        <article class="menu-card">
+          <p class="menu-origin">Huila, Colombia</p>
+          <h3>Honey process, medium roast</h3>
+          <p class="menu-notes">Brown sugar, red apple, soft cocoa</p>
+          <p class="menu-price">$19 / 340g</p>
+        </article>
+        <article class="menu-card">
+          <p class="menu-origin">Bukidnon, Philippines</p>
+          <h3>Natural, medium-dark roast</h3>
+          <p class="menu-notes">Dried mango, molasses, low acidity</p>
+          <p class="menu-price">$22 / 340g</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="visit">
+    <div class="wrap visit-grid">
+      <div>
+        <h2>Find the door</h2>
+        <p class="section-lede">No sign out front yet — look for the green awning.</p>
+        <ul class="visit-list">
+          <li><strong>Address</strong><span>14 Kiln Row, back of the courtyard</span></li>
+          <li><strong>Hours</strong><span>Tue–Sat, 8:00–15:00</span></li>
+          <li><strong>Wholesale</strong><span>wholesale@aperturecoffee.example</span></li>
+        </ul>
+      </div>
+      <form class="visit-form" id="notifyForm">
+        <h3>Get a text when a new origin drops</h3>
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 012-0198" required>
+        <button type="submit" class="btn btn-primary">Notify me</button>
+        <p class="form-note" id="formNote" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>© <span id="year"></span> Aperture Coffee Roasters.</p>
+    <p>Roasted in small batches. No shortcuts.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
