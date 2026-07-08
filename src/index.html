@@ -1,165 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Aperture Coffee Roasters — Small-batch, slow-roasted</title>
-<meta name="description" content="Aperture Coffee Roasters — a small-batch roastery. See our roast curve, browse the current lineup, and find our door." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Microprocessor &amp; Interfacing · Practical List</title>
+  <!-- Font Awesome 6 (free) for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f0f3fa 0%, #dae1f0 100%);
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* main card – glassmorphism */
+    .practical-card {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 48px;
+      padding: 2.4rem 2.8rem;
+      box-shadow: 0 25px 50px -8px rgba(10, 20, 50, 0.25),
+                  0 8px 20px rgba(0,0,0,0.04);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: 0.25s ease;
+    }
+
+    @media (max-width: 700px) {
+      .practical-card { padding: 1.6rem 1.2rem; border-radius: 32px; }
+    }
+
+    /* header */
+    .header-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem 1.5rem;
+      margin-bottom: 2.4rem;
+      border-bottom: 2px solid rgba(30, 50, 100, 0.10);
+      padding-bottom: 1.2rem;
+    }
+
+    .header-block .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .header-block .brand i {
+      font-size: 2.6rem;
+      color: #1a2d5c;
+      background: rgba(26, 45, 92, 0.08);
+      padding: 0.6rem;
+      border-radius: 20px;
+    }
+
+    .header-block h1 {
+      font-weight: 650;
+      font-size: 2rem;
+      letter-spacing: -0.3px;
+      color: #0f1e3a;
+      background: linear-gradient(135deg, #142750, #2a4080);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-block .sub {
+      margin-left: auto;
+      background: rgba(26, 45, 92, 0.08);
+      padding: 0.3rem 1.3rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1e2f5a;
+      border: 1px solid rgba(255,255,255,0.4);
+      white-space: nowrap;
+    }
+
+    .meta-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.4);
+      border-radius: 30px;
+      padding: 0.5rem 1.8rem;
+      margin-bottom: 2rem;
+      align-items: center;
+      font-size: 0.95rem;
+      color: #1f2f4a;
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .meta-info span i {
+      margin-right: 8px;
+      color: #1f3a7a;
+    }
+
+    /* experiment list */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .exp-item {
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 30px;
+      padding: 1rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+
+    .exp-item:hover {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 12px 28px rgba(20, 30, 70, 0.07);
+      transform: translateY(-2px);
+      border-color: #c4d2ee;
+    }
+
+    /* left side: number + title */
+    .exp-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 2 1 280px;
+    }
+
+    .exp-num {
+      font-weight: 700;
+      font-size: 1.2rem;
+      background: #eef2fc;
+      width: 40px;
+      height: 40px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a2d5c;
+      border: 1px solid rgba(26, 45, 92, 0.06);
+      flex-shrink: 0;
+    }
+
+    .exp-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #101f3a;
+      line-height: 1.3;
+    }
+
+    .exp-title small {
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: #3b4e74;
+      display: block;
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    /* right side: hours + CLO + demo button */
+    .exp-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem 1.6rem;
+      margin-left: auto;
+      flex: 1 1 240px;
+      justify-content: flex-end;
+    }
+
+    .hours-badge {
+      background: #dce3f5;
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #152a4a;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .clo-tag {
+      background: #1a2d5c;
+      color: white;
+      padding: 0.2rem 0.9rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    .demo-btn {
+      background: white;
+      border: none;
+      padding: 0.45rem 1.1rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #1a2d5c;
+      background: #eef2fc;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid rgba(26, 45, 92, 0.06);
+      font-family: inherit;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .demo-btn i {
+      font-size: 0.8rem;
+    }
+
+    .demo-btn:hover {
+      background: #dae2f7;
+      transform: scale(0.97);
+      border-color: #9fb0db;
+    }
+
+    .demo-btn:active {
+      transform: scale(0.94);
+    }
+
+    /* output area (dynamic) */
+    .output-area {
+      margin-top: 2.2rem;
+      background: rgba(20, 30, 60, 0.04);
+      border-radius: 28px;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      backdrop-filter: blur(2px);
+      transition: 0.2s;
+    }
+
+    .output-area i {
+      font-size: 1.4rem;
+      color: #1f3a7a;
+      opacity: 0.5;
+    }
+
+    .output-text {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.95rem;
+      color: #0b1a33;
+      background: rgba(255,255,255,0.5);
+      padding: 0.3rem 1.2rem;
+      border-radius: 60px;
+      flex: 1;
+      min-width: 140px;
+      word-break: break-word;
+    }
+
+    .output-text .highlight {
+      background: #ffecb3;
+      padding: 0 8px;
+      border-radius: 12px;
+    }
+
+    .footer-note {
+      margin-top: 1.8rem;
+      font-size: 0.8rem;
+      color: #4b5d7a;
+      text-align: right;
+      border-top: 1px solid rgba(0,0,0,0.04);
+      padding-top: 1rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .meta-info { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+      .exp-item { padding: 0.8rem 1.2rem; }
+      .exp-meta { justify-content: flex-start; margin-left: 0; }
+      .output-area { padding: 0.8rem 1.2rem; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap header-row">
-    <a class="brand" href="#top">
-      <span class="brand-mark" aria-hidden="true">◐</span>
-      Aperture
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="primary-nav" id="primaryNav">
-      <a href="#story">Story of coffee</a>
-      <a href="#roast">The Roast</a>
-      <a href="#menu">Lineup</a>
-      <a href="#visit">Visit</a>
-    </nav>
+<div class="practical-card">
+
+  <!-- HEADER -->
+  <div class="header-block">
+    <div class="brand">
+      <i class="fas fa-microchip"></i>
+      <h1>Microprocessor &amp; Interfacing</h1>
+    </div>
+    <div class="sub"><i class="fas fa-calendar-alt" style="margin-right: 6px;"></i>Semester VI · [3-0-2-4]</div>
   </div>
-</header>
 
-<main id="top">
-
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Small-batch · 12kg drum · roasted Tuesdays &amp; Fridays</p>
-        <h1>We roast until the bean tells us to stop.</h1>
-        <p class="lede">No flavor charts, no shortcuts. Every batch is tasted, timed, and logged by hand before it ever reaches a bag.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#menu">See this week's lineup</a>
-          <a class="btn btn-ghost" href="#visit">Find the door</a>
-        </div>
-      </div>
-      <div class="hero-panel" aria-hidden="true">
-        <div class="steam-cup">
-          <div class="steam s1"></div>
-          <div class="steam s2"></div>
-          <div class="steam s3"></div>
-          <div class="cup"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="story" class="story">
-    <div class="wrap story-grid">
-      <div class="story-text">
-        <h2>Started on a two-burner stovetop.</h2>
-        <p>Aperture began in 2019 in a one-car garage with a secondhand popcorn roaster and a kitchen thermometer. We kept the habit that started it all: writing down what we did, tasting what came out, and changing one variable at a time.</p>
-        <p>Today the roaster is bigger, but the method hasn't changed. We buy direct from three growing regions, roast in batches small enough to correct mid-course, and cup every batch before it's approved to sell.</p>
-      </div>
-      <dl class="story-stats">
-        <div><dt>6</dt><dd>years roasting</dd></div>
-        <div><dt>3</dt><dd>origin partners</dd></div>
-        <div><dt>12kg</dt><dd>max batch size</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section id="roast" class="roast">
-    <div class="wrap">
-      <h2>The roast curve, explained</h2>
-      <p class="section-lede">Roasting is a straight line from green to first crack to your cup. Drag the marker — or read left to right — to see what's happening to the bean at each stage.</p>
-
-      <div class="curve-widget">
-        <svg viewBox="0 0 900 340" class="curve-svg" id="curveSvg" role="img" aria-label="Roast temperature curve from charge to drop">
-          <line x1="60" y1="290" x2="860" y2="290" class="axis"></line>
-          <line x1="60" y1="20" x2="60" y2="290" class="axis"></line>
-          <path id="curvePath" class="curve-path" d="M60,270 C220,250 300,190 420,140 C520,100 600,80 700,60 C760,50 820,45 860,42" fill="none"></path>
-          <g class="curve-markers">
-            <circle cx="60" cy="270" r="6" data-stage="0"></circle>
-            <circle cx="330" cy="205" r="6" data-stage="1"></circle>
-            <circle cx="560" cy="95" r="6" data-stage="2"></circle>
-            <circle cx="700" cy="60" r="6" data-stage="3"></circle>
-            <circle cx="860" cy="42" r="6" data-stage="4"></circle>
-          </g>
-          <circle id="curveDot" class="curve-dot" cx="60" cy="270" r="8"></circle>
-        </svg>
-
-        <div class="curve-readout">
-          <span class="curve-time" id="curveTime">0:00</span>
-          <span class="curve-temp" id="curveTemp">Charge · 200°C</span>
-        </div>
-
-        <input type="range" min="0" max="4" step="1" value="0" id="curveSlider" class="curve-slider" aria-label="Roast stage">
-
-        <p class="curve-caption" id="curveCaption">Green beans hit the drum. Temperature drops fast as the cold beans absorb heat.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="menu" class="menu">
-    <div class="wrap">
-      <h2>This week's lineup</h2>
-      <p class="section-lede">Roasted Tuesday, bagged Wednesday, gone by Sunday. When it sells out, it's off the shelf until the next region comes in.</p>
-
-      <div class="menu-grid" id="menuGrid">
-        <!-- cards injected by script.js, static fallback below -->
-        <article class="menu-card">
-          <p class="menu-origin">Yirgacheffe, Ethiopia</p>
-          <h3>Washed, light roast</h3>
-          <p class="menu-notes">Bergamot, stone fruit, black tea finish</p>
-          <p class="menu-price">$21 / 340g</p>
-        </article>
-        <article class="menu-card">
-          <p class="menu-origin">Huila, Colombia</p>
-          <h3>Honey process, medium roast</h3>
-          <p class="menu-notes">Brown sugar, red apple, soft cocoa</p>
-          <p class="menu-price">$19 / 340g</p>
-        </article>
-        <article class="menu-card">
-          <p class="menu-origin">Bukidnon, Philippines</p>
-          <h3>Natural, medium-dark roast</h3>
-          <p class="menu-notes">Dried mango, molasses, low acidity</p>
-          <p class="menu-price">$22 / 340g</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="visit" class="visit">
-    <div class="wrap visit-grid">
-      <div>
-        <h2>Find the door</h2>
-        <p class="section-lede">No sign out front yet — look for the green awning.</p>
-        <ul class="visit-list">
-          <li><strong>Address</strong><span>14 Kiln Row, back of the courtyard</span></li>
-          <li><strong>Hours</strong><span>Tue–Sat, 8:00–15:00</span></li>
-          <li><strong>Wholesale</strong><span>wholesale@aperturecoffee.example</span></li>
-        </ul>
-      </div>
-      <form class="visit-form" id="notifyForm">
-        <h3>Get a text when a new origin drops</h3>
-        <label for="phone">Phone number</label>
-        <input type="tel" id="phone" name="phone" placeholder="(555) 012-0198" required>
-        <button type="submit" class="btn btn-primary">Notify me</button>
-        <p class="form-note" id="formNote" role="status"></p>
-      </form>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap footer-row">
-    <p>© <span id="year"></span> Aperture Coffee Roasters.</p>
-    <p>Roasted in small batches. No shortcuts.</p>
+  <!-- meta row -->
+  <div class="meta-info">
+    <span><i class="fas fa-university"></i> NIRMA UNIVERSITY · Institute of Technology</span>
+    <span><i class="fas fa-code"></i> B.Tech. CSE</span>
+    <span><i class="fas fa-flask"></i> Practical List</span>
   </div>
-</footer>
 
-<script src="js/script.js"></script>
+  <!-- EXPERIMENT LIST (10 items) -->
+  <div class="exp-list" id="experimentList">
+    <!-- each item will be injected by JS -->
+  </div>
+
+  <!-- OUTPUT / FEEDBACK PANEL -->
+  <div class="output-area" id="outputPanel">
+    <i class="fas fa-terminal"></i>
+    <span class="output-text" id="outputDisplay"><i class="fas fa-chevron-right" style="margin-right: 8px; opacity: 0.3;"></i> click <span class="highlight">▶ demo</span> on any experiment</span>
+  </div>
+
+  <div class="footer-note">
+    <i class="fas fa-arrow-right" style="margin-right: 6px;"></i> click demo to simulate result
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ----- experiment dataset (exactly as given) -----
+    const experiments = [
+      {
+        id: 1,
+        title: 'Introduction to SASM IDE',
+        desc: 'Explore editor, debugger, "Hello World", add two numbers',
+        hours: 2,
+        clo: '1,2'
+      },
+      {
+        id: 2,
+        title: 'Binary arithmetic (16-bit & 32-bit)',
+        desc: 'Addition, subtraction, multiplication, division · hex result',
+        hours: 4,
+        clo: '2'
+      },
+      {
+        id: 3,
+        title: 'Max & min from array of 8 numbers',
+        desc: 'Find extremes from data segment array',
+        hours: 2,
+        clo: '2'
+      },
+      {
+        id: 4,
+        title: 'Octal → binary & case conversion',
+        desc: 'Octal to binary · lowercase ↔ uppercase',
+        hours: 4,
+        clo: '2,3'
+      },
+      {
+        id: 5,
+        title: 'Bubble sort (ascending)',
+        desc: 'Sort array of numbers using bubble sort',
+        hours: 2,
+        clo: '2,3'
+      },
+      {
+        id: 6,
+        title: 'Sum, average, parity, string ↔ int',
+        desc: 'Add 10 nums, average · count 1s & parity · string/int conversion',
+        hours: 4,
+        clo: '3'
+      },
+      {
+        id: 7,
+        title: 'Reverse string (NEAR procedure)',
+        desc: 'User entered string reversed using NEAR proc',
+        hours: 2,
+        clo: '3'
+      },
+      {
+        id: 8,
+        title: 'Character occurrence & substring',
+        desc: 'Find char occurrences · substring using NEAR proc',
+        hours: 4,
+        clo: '2,3'
+      },
+      {
+        id: 9,
+        title: 'Fibonacci series (FAR procedure)',
+        desc: 'Generate Fibonacci up to N terms · display series',
+        hours: 2,
+        clo: '2,3'
+      },
+      {
+        id: 10,
+        title: 'Prime / odd / even + 8254 study',
+        desc: 'Check prime, odd, even · 8254 timer chip architecture',
+        hours: 4,
+        clo: '3,4'
+      }
+    ];
+
+    // ----- helper: generate a "demo" output based on experiment id -----
+    function getDemoOutput(expId) {
+      const outputs = {
+        1: '✅ "Hello World" · add 5+7 = 12  (trace: step, breakpoint, register)',
+        2: '🔢 16-bit: 0x7FFF + 0x0001 = 0x8000  |  32-bit: 0x12345678 + 0x87654321 = 0x99999999',
+        3: '📊 Array [12, 5, 89, 3, 44, 7, 22, 15]  →  Max = 89, Min = 3',
+        4: '🔁 Octal 345 → binary 011100101  |  "Hello" ↔ "hELLO" (case swap)',
+        5: '🔄 Array [34, 7, 23, 89, 12, 4]  →  [4, 7, 12, 23, 34, 89]  (bubble sort)',
+        6: '📈 Sum=250, Avg=25.0  |  parity of 0b10101010 → 4 ones (even)  |  "123" → 123',
+        7: '🔁 "Microprocessor"  →  "rossesocorciM"  (NEAR procedure)',
+        8: '🔍 "processor" in "Microprocessor" → found at index 5  |  char \'o\' occurs 2 times',
+        9: '🌀 Fibonacci N=8 : 0, 1, 1, 2, 3, 5, 8, 13  (FAR procedure)',
+        10: '🧪 17 → prime, odd  |  8254: 3 counters, 16-bit, mode 0..5, pin diagram available'
+      };
+      return outputs[expId] || '✨ experiment demo ready (simulated)';
+    }
+
+    // ----- render experiments into DOM -----
+    const container = document.getElementById('experimentList');
+    const outputDisplay = document.getElementById('outputDisplay');
+
+    // clear and build
+    container.innerHTML = '';
+
+    experiments.forEach((exp, index) => {
+      const item = document.createElement('div');
+      item.className = 'exp-item';
+
+      // left: number + title/desc
+      const leftDiv = document.createElement('div');
+      leftDiv.className = 'exp-left';
+
+      const numSpan = document.createElement('span');
+      numSpan.className = 'exp-num';
+      numSpan.textContent = exp.id;
+
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'exp-title';
+      titleDiv.innerHTML = `${exp.title} <small>${exp.desc}</small>`;
+
+      leftDiv.appendChild(numSpan);
+      leftDiv.appendChild(titleDiv);
+
+      // right: hours, CLO, demo button
+      const metaDiv = document.createElement('div');
+      metaDiv.className = 'exp-meta';
+
+      const hoursSpan = document.createElement('span');
+      hoursSpan.className = 'hours-badge';
+      hoursSpan.innerHTML = `<i class="far fa-clock" style="margin-right: 4px;"></i>${exp.hours}h`;
+
+      const cloSpan = document.createElement('span');
+      cloSpan.className = 'clo-tag';
+      cloSpan.textContent = `CLO ${exp.clo}`;
+
+      const demoBtn = document.createElement('button');
+      demoBtn.className = 'demo-btn';
+      demoBtn.innerHTML = `<i class="fas fa-play"></i> demo`;
+      demoBtn.setAttribute('data-expid', exp.id);
+
+      // ----- demo click: update output -----
+      demoBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const id = parseInt(this.getAttribute('data-expid'), 10);
+        const demoText = getDemoOutput(id);
+        // add a little icon / style
+        outputDisplay.innerHTML = `<i class="fas fa-chevron-right" style="margin-right: 10px; opacity: 0.4;"></i> ${demoText}`;
+        // small animation: flash
+        outputDisplay.style.transition = '0.1s';
+        outputDisplay.style.background = 'rgba(255, 235, 180, 0.4)';
+        setTimeout(() => {
+          outputDisplay.style.background = 'rgba(255,255,255,0.5)';
+        }, 250);
+      });
+
+      metaDiv.appendChild(hoursSpan);
+      metaDiv.appendChild(cloSpan);
+      metaDiv.appendChild(demoBtn);
+
+      item.appendChild(leftDiv);
+      item.appendChild(metaDiv);
+      container.appendChild(item);
+    });
+
+    // ----- set default output (experiment 1) -----
+    // (optional) show first demo as welcome
+    outputDisplay.innerHTML = `<i class="fas fa-chevron-right" style="margin-right: 10px; opacity: 0.4;"></i> ${getDemoOutput(1)}`;
+
+    // extra: if user clicks on output panel itself, reset to first demo? 
+    // but we keep it as is.
+    // also attach a small reset to first demo on doubleclick output (just for fun)
+    const outputPanel = document.getElementById('outputPanel');
+    outputPanel.addEventListener('dblclick', function() {
+      outputDisplay.innerHTML = `<i class="fas fa-chevron-right" style="margin-right: 10px; opacity: 0.4;"></i> ${getDemoOutput(1)}`;
+    });
+
+  })();
+</script>
+
 </body>
 </html>
